@@ -23,6 +23,8 @@ namespace Racer
         Wall brick;
         Rectangle screenRectangle;
         Boolean start;
+        GG gameOver;
+        Boolean lost;
 
         public Game1()
         {
@@ -31,6 +33,7 @@ namespace Racer
 
             screenRectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             start = false;
+            lost = false;
             Console.WriteLine("Game1() ran");
         }
 
@@ -60,10 +63,11 @@ namespace Racer
             Texture2D tempTexture = Content.Load<Texture2D>("ball");
             Texture2D tempWallTexture = Content.Load<Texture2D>("paddle");
             Texture2D menuTexture = Content.Load<Texture2D>("startMenu");
+            Texture2D ggTexture = Content.Load<Texture2D>("ggscreen");
 
             Menu = new startMenu(menuTexture);
-
             Player = new Car(tempTexture, screenRectangle);
+            gameOver = new GG(ggTexture, lost);
             
 
         }
@@ -93,7 +97,7 @@ namespace Racer
             if (!start)
             {
                 start = Menu.Update();
-                Console.WriteLine(start);
+                //Console.WriteLine(start);
                 Texture2D tempTexture = Content.Load<Texture2D>("ball");
                 Player = new Car(tempTexture, screenRectangle);
                 Texture2D tempWallTexture = Content.Load<Texture2D>("paddle");
@@ -103,9 +107,45 @@ namespace Racer
             {
                 Player.Update();
                 brick.Update();
+                //draw gg
             }
+            Collision(brick, Player);
             
             base.Update(gameTime);
+        }
+
+        private void Collision(Wall brick, Car Player)
+        {
+            Vector2 brickVec = brick.getPosition();
+            Vector2 playerVec = Player.getPosition();
+            Texture2D brickTexture = brick.getTexture();
+            //Texture2D playerTexture = Player.getTexture();
+            //brickvec.x <= playervec.x <= brickvec.x+bricktexture.width
+            //bickvec.y+bricktexture.height <= playervec.y <= brickvec.y
+            /*
+            if ((brickVec.X <= playerVec.X) && (playerVec.X <= brickVec.X + brickTexture.Width) && (brickVec.Y + brickTexture.Height >= playerVec.Y))
+            {
+                //puts the color of each pixel of the brick texture into an array
+                Color[] pixelColors = new Color[brickTexture.Width * brickTexture.Height];
+                brickTexture.GetData<Color>(pixelColors);
+                for (int i = 0; i < pixelColors.Length; i++)
+                {
+                    if ((pixelColors[i].R == 0) && (pixelColors[i].G == 0) && (pixelColors[i].B == 0))
+                    {
+                        Console.WriteLine("touche");
+                    }
+                }
+
+
+            //Console.WriteLine("touche");
+            }
+            */
+            if ((brickVec.X <= playerVec.X) && (playerVec.X <= brickVec.X + brickTexture.Width) && (brickVec.Y + brickTexture.Height >= playerVec.Y))
+            {
+                Console.WriteLine("touche");
+                gameOver.setLost(true);
+                lost = gameOver.getLost();
+            }
         }
 
         /// <summary>
@@ -122,6 +162,7 @@ namespace Racer
             Player.Draw(spriteBatch);
             brick.Draw(spriteBatch);
             Menu.Draw(spriteBatch);
+            gameOver.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
