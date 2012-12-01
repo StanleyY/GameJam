@@ -52,8 +52,13 @@ namespace Racer
             motion *= this.multiplier;
 
             position += motion;
+<<<<<<< HEAD
+          
+            LockCar(); 
+=======
 
             LockCar();      
+>>>>>>> upstream/master
         
         }
 
@@ -108,6 +113,31 @@ namespace Racer
                 texture.Width,
                 texture.Height);
             return ballLocation;
+        }
+
+        public void takeDamage()
+        {
+            this.shields--;
+        }
+
+        public int getShields()
+        {
+            return this.shields;
+        }
+
+        public void addShields()
+        {
+            this.shields++;
+        }
+
+        public float getMultiplier()
+        {
+            return this.multiplier;
+        }
+
+        public void buffMultiplier(float m)
+        {
+            this.multiplier *= m;
         }
 
         public void Draw(SpriteBatch spriteBatch)

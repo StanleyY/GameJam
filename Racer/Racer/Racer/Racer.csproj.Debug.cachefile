@@ -1,10 +1,17 @@
 Content\ball.xnb
 Content\paddle.xnb
-Content\startmenu.xnb
+Content\startMenu.xnb
 Content\ggscreen.xnb
+<<<<<<< HEAD
+Content\red.xnb
+Content\blue.xnb
+Content\green.xnb
+Content\myFont.xnb
+=======
 Content\missle.xnb
 Content\missle2.xnb
 Content\myFont.xnb
 Content\blue.xnb
 Content\green.xnb
 Content\red.xnb
+>>>>>>> upstream/master

@@ -10,6 +10,20 @@ namespace Racer
 {
     class powerUp : Wall //subclassing Wall
     {
+<<<<<<< HEAD
+
+        Boolean testbool;
+        Texture2D texture;
+        Rectangle screenBounds;
+
+        //public powerUp(Texture2D texture, Rectangle screenBounds) : base(Texture2D texture, Rectangle screenBounds)
+        public powerUp(Texture2D texture, Rectangle screenBounds) : base(texture, screenBounds)
+        {
+            this.testbool = true;
+            this.texture = texture;
+            this.screenBounds = screenBounds;
+        }
+=======
         
         Texture2D texture;
         Rectangle screenBounds;
@@ -34,5 +48,6 @@ namespace Racer
                     speed += 0.5f;
             }
         }
+>>>>>>> upstream/master
     }
 }

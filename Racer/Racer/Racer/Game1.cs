@@ -84,6 +84,8 @@ namespace Racer
             Texture2D blueTexture = Content.Load<Texture2D>("blue");
             bluePow = new powerUp(blueTexture, screenRectangle, random.Next(0, screenRectangle.Width));
 
+            font = Content.Load<SpriteFont>("myFont");
+
             Menu = new startMenu(menuTexture);
             gameOver = new GG(ggTexture, lost);
 
@@ -115,29 +117,90 @@ namespace Racer
                 start = Menu.Update();
                 startScreen = gameTime.TotalGameTime;
                 //Console.WriteLine(start);
+<<<<<<< HEAD
+                Texture2D tempTexture = Content.Load<Texture2D>("ball");
+                Player = new Car(tempTexture, screenRectangle);
+                Texture2D tempWallTexture = Content.Load<Texture2D>("ball");
+                brick = new Wall(tempWallTexture, screenRectangle);
+                Texture2D redTexture = Content.Load<Texture2D>("red");
+                redPow = new powerUp(redTexture, screenRectangle);
+                Texture2D greenTexture = Content.Load<Texture2D>("green");
+                greenPow = new powerUp(greenTexture, screenRectangle);
+                Texture2D blueTexture = Content.Load<Texture2D>("blue");
+                bluePow = new powerUp(blueTexture, screenRectangle);
+                startScreen = gameTime.TotalGameTime;
+            }
+=======
            /*     brick2 = new Wall(tempWallTexture, screenRectangle, random.Next(0, screenRectangle.Width));
                 brick3 = new Wall(tempWallTexture, screenRectangle, random.Next(0, screenRectangle.Width));
                 brick4 = new Wall(tempWallTexture, screenRectangle, random.Next(0, screenRectangle.Width)); */
             }
 
+>>>>>>> upstream/master
             TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
             if (start)
             {
                 Player.Update();
+<<<<<<< HEAD
+                //brick.Update();
+                //redPow.Update();
+                greenPow.Update();
+                //bluePow.Update();
+=======
                 brick.Update(random.Next(0, screenRectangle.Width), Player.getPosition());
                 greenPow.Update(random.Next(0, screenRectangle.Width), Player.getPosition());
                 /*brick2.Update(random.Next(0, screenRectangle.Width));
                 brick3.Update(random.Next(0, screenRectangle.Width));
                 brick4.Update(random.Next(0, screenRectangle.Width));*/
+>>>>>>> upstream/master
                 //draw gg
             }
-       //     Collision(brick, Player);
-            if(brick.checkCollision(Player.getRectangle()))
+            if (brick.checkCollision(Player.getRectangle()))
             {
                 Console.WriteLine("touche");
                 Player.takeDamage();
                 brick.hitPlayer = true;
                 if (Player.getShields() <= 0)
+<<<<<<< HEAD
+                {
+                    gameOver.setLost(true);
+                    lost = gameOver.getLost();
+                }
+            }
+            if (redPow.checkCollision(Player.getRectangle()))
+            {
+                Console.WriteLine("redPOW");
+                Player.addShields();
+                redPow.hitPlayer = true;
+                Console.WriteLine(Player.getShields());
+            }
+            if (greenPow.checkCollision(Player.getRectangle()))//is permanent for now
+            {
+                Console.WriteLine("greenPOW");
+                TimeSpan timeToStop = timePlaying.Add(TimeSpan.Parse("0:0:10"));
+                Player.buffMultiplier(2);//timespan of 10s
+                greenPow.hitPlayer = true;
+                Console.WriteLine("You got a green power up");
+            }
+            if (bluePow.checkCollision(Player.getRectangle()))
+            {
+                Console.WriteLine("bluePOW");
+                bluePow.hitPlayer = true;
+                Console.WriteLine("You got a blue power up");
+            }
+            //Player.updateScore(gameTime.TotalGameTime);
+            //TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
+            if (!lost && start)
+                PlayerTime = "Time: " + timePlaying.ToString();
+            base.Update(gameTime);
+        }
+
+        private void DrawText()
+        {
+            spriteBatch.DrawString(font, PlayerTime, new Vector2(10, 10), Color.White);
+        }
+
+=======
                 {
                 //    gameOver.setLost(true);
                 //    lost = gameOver.getLost();
@@ -178,6 +241,7 @@ namespace Racer
             spriteBatch.DrawString(font, PlayerTime, new Vector2(10, 10), Color.White);
         }
 
+>>>>>>> upstream/master
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -191,6 +255,15 @@ namespace Racer
             
             Player.Draw(spriteBatch);
             brick.Draw(spriteBatch);
+<<<<<<< HEAD
+            redPow.Draw(spriteBatch);
+            greenPow.Draw(spriteBatch);
+            bluePow.Draw(spriteBatch);
+            Menu.Draw(spriteBatch);
+            gameOver.Draw(spriteBatch);
+            DrawText();
+
+=======
             /*(brick2.Draw(spriteBatch);
             brick3.Draw(spriteBatch);
             brick4.Draw(spriteBatch);
@@ -201,6 +274,7 @@ namespace Racer
             Menu.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
             DrawText();
+>>>>>>> upstream/master
             spriteBatch.End();
             
 

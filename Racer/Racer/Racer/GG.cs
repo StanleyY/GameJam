@@ -39,7 +39,13 @@ namespace Racer
             }
             else
             {
+<<<<<<< HEAD
+                spriteBatch.Draw(texture, Vector2.Zero, Color.White);
+                //draw score under
+
+=======
                 spriteBatch.Draw(texture, position, Color.White);
+>>>>>>> upstream/master
             }
         }
 

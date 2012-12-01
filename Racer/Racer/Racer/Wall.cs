@@ -15,14 +15,21 @@ namespace Racer
         Texture2D texture;
         Rectangle screenBounds;
         public Boolean hitPlayer;
+<<<<<<< HEAD
+=======
         double rotation = Math.PI;
+>>>>>>> upstream/master
 
         public Wall(Texture2D texture, Rectangle screenBounds, int random)
         {
             this.texture = texture;
             this.screenBounds = screenBounds;
             this.hitPlayer = false;
+<<<<<<< HEAD
+            StartPosition();
+=======
             StartPosition(random);
+>>>>>>> upstream/master
         }
 
         void StartPosition(int randomNumber)
@@ -90,6 +97,18 @@ namespace Racer
 
         public bool checkCollision(Rectangle Car)
         {
+<<<<<<< HEAD
+            Rectangle missleLocation = new Rectangle(
+            (int)position.X,
+            (int)position.Y,
+            texture.Width,
+            texture.Height);
+
+            if (missleLocation.Intersects(Car) && (this.hitPlayer == false))
+                return true;
+
+            if (this.position.Y == 50)
+=======
             int actualWidth = (int)(texture.Width * position.Y / 96);
             Rectangle missleLocation;
             if (rotation > 3.14)
@@ -112,6 +131,7 @@ namespace Racer
                 return true;
 
             if (this.position.Y == 0)
+>>>>>>> upstream/master
                 this.hitPlayer = false;
 
             return false;
