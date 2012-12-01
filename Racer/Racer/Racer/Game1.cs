@@ -26,6 +26,8 @@ namespace Racer
         GG gameOver;
         Boolean lost;
         powerUp redPow;
+        powerUp greenPow;
+        powerUp bluePow;
 
         public Game1()
         {
@@ -99,14 +101,20 @@ namespace Racer
                 Player = new Car(tempTexture, screenRectangle);
                 Texture2D tempWallTexture = Content.Load<Texture2D>("ball");
                 brick = new Wall(tempWallTexture, screenRectangle);
-                Texture2D redTexture = Content.Load<Texture2D>("red");                
+                Texture2D redTexture = Content.Load<Texture2D>("red");
                 redPow = new powerUp(redTexture, screenRectangle);
+                Texture2D greenTexture = Content.Load<Texture2D>("green");
+                greenPow = new powerUp(greenTexture, screenRectangle);
+                Texture2D blueTexture = Content.Load<Texture2D>("blue");
+                bluePow = new powerUp(blueTexture, screenRectangle);
             }
             if (start)
             {
                 Player.Update();
                 //brick.Update();
                 redPow.Update();
+                greenPow.Update();
+                bluePow.Update();
                 //draw gg
             }
        //     Collision(brick, Player);
@@ -123,10 +131,24 @@ namespace Racer
             }
             if (redPow.checkCollision(Player.getRectangle()))
             {
-                Console.WriteLine("POWPOW");
+                Console.WriteLine("redPOW");
                 redPow.addShields(Player);
                 redPow.hitPlayer = true;
                 Console.WriteLine(Player.getShields());
+            }
+            if (greenPow.checkCollision(Player.getRectangle()))
+            {
+                Console.WriteLine("greenPOW");
+                greenPow.addShields(Player);
+                greenPow.hitPlayer = true;
+                Console.WriteLine("You got a green power up");
+            }
+            if (bluePow.checkCollision(Player.getRectangle()))
+            {
+                Console.WriteLine("bluePOW");
+                bluePow.addShields(Player);
+                bluePow.hitPlayer = true;
+                Console.WriteLine("You got a blue power up");
             }
             base.Update(gameTime);
         }
@@ -145,6 +167,8 @@ namespace Racer
             Player.Draw(spriteBatch);
             brick.Draw(spriteBatch);
             redPow.Draw(spriteBatch);
+            greenPow.Draw(spriteBatch);
+            bluePow.Draw(spriteBatch);
             Menu.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
             spriteBatch.End();

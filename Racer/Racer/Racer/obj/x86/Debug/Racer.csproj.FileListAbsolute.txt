@@ -9,3 +9,5 @@ C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Racer.p
 C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\obj\x86\Debug\Racer.exe
 C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\obj\x86\Debug\Racer.pdb
 C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\red.xnb
+C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\blue.xnb
+C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\green.xnb

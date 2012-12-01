@@ -3,3 +3,5 @@ Content\paddle.xnb
 Content\startMenu.xnb
 Content\ggscreen.xnb
 Content\red.xnb
+Content\blue.xnb
+Content\green.xnb

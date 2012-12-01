@@ -46,6 +46,24 @@
       <Output>C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\red.xnb</Output>
       <Time>2012-12-01T04:02:59.652595-05:00</Time>
     </Item>
+    <Item>
+      <Source>blue.png</Source>
+      <Name>blue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\blue.xnb</Output>
+      <Time>2012-12-01T04:32:12.1298309-05:00</Time>
+    </Item>
+    <Item>
+      <Source>green.png</Source>
+      <Name>green</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\green.xnb</Output>
+      <Time>2012-12-01T04:32:21.7403806-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
