@@ -20,7 +20,9 @@ namespace Racer
         SpriteBatch spriteBatch;
         Car Player;
         Wall wall;
+        startMenu Menu;
         Rectangle screenRectangle;
+        Boolean start;
 
         public Game1()
         {
@@ -28,6 +30,8 @@ namespace Racer
             Content.RootDirectory = "Content";
 
             screenRectangle = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            start = false;
+            Console.WriteLine("Game1() ran");
         }
 
         /// <summary>
@@ -55,8 +59,12 @@ namespace Racer
             // TODO: use this.Content to load your game content here
             Texture2D tempTexture = Content.Load<Texture2D>("ball");
             Texture2D tempWallTexture = Content.Load<Texture2D>("paddle");
+            Texture2D menuTexture = Content.Load<Texture2D>("startMenu");
+
+            Menu = new startMenu(menuTexture);
 
             Player = new Car(tempTexture, screenRectangle);
+            
 
         }
 
@@ -82,8 +90,18 @@ namespace Racer
 
             // TODO: Add your update logic here
 
-            Player.Update();
-
+            if (!start)
+            {
+                start = Menu.Update();
+                Console.WriteLine(start);
+                Texture2D tempTexture = Content.Load<Texture2D>("ball");
+                Player = new Car(tempTexture, screenRectangle);
+            }
+            if (start)
+            {
+                Player.Update();
+            }
+            
             base.Update(gameTime);
         }
 
@@ -93,11 +111,14 @@ namespace Racer
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            
             Player.Draw(spriteBatch);
+             
+            Menu.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
