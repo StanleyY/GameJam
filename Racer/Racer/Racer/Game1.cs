@@ -115,15 +115,15 @@ namespace Racer
                 bluePow = new powerUp(blueTexture, screenRectangle);
                 startScreen = gameTime.TotalGameTime;
             }
+            TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
             if (start)
             {
                 Player.Update();
-                brick.Update();
+                //brick.Update();
                 //redPow.Update();
-                //greenPow.Update();
+                greenPow.Update();
                 //bluePow.Update();
                 //draw gg
-
             }
             if (brick.checkCollision(Player.getRectangle()))
             {
@@ -139,26 +139,26 @@ namespace Racer
             if (redPow.checkCollision(Player.getRectangle()))
             {
                 Console.WriteLine("redPOW");
-                redPow.addShields(Player);
+                Player.addShields();
                 redPow.hitPlayer = true;
                 Console.WriteLine(Player.getShields());
             }
             if (greenPow.checkCollision(Player.getRectangle()))//is permanent for now
             {
                 Console.WriteLine("greenPOW");
-                greenPow.buffMultiplier(Player);
+                TimeSpan timeToStop = timePlaying.Add(TimeSpan.Parse("0:0:10"));
+                Player.buffMultiplier(2);//timespan of 10s
                 greenPow.hitPlayer = true;
                 Console.WriteLine("You got a green power up");
             }
             if (bluePow.checkCollision(Player.getRectangle()))
             {
                 Console.WriteLine("bluePOW");
-                bluePow.addShields(Player);
                 bluePow.hitPlayer = true;
                 Console.WriteLine("You got a blue power up");
             }
             //Player.updateScore(gameTime.TotalGameTime);
-            TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
+            //TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
             if (!lost && start)
                 PlayerTime = "Time: " + timePlaying.ToString();
             base.Update(gameTime);
