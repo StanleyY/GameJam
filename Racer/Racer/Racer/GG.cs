@@ -18,6 +18,8 @@ namespace Racer
         {
             this.texture = texture;
             this.lost = false;
+            this.position.X = 0;
+            this.position.Y = 40;
         }
 
         public void setLost(Boolean lost)
@@ -38,6 +40,8 @@ namespace Racer
             else
             {
                 spriteBatch.Draw(texture, Vector2.Zero, Color.White);
+                //draw score under
+
             }
         }
 

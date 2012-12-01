@@ -30,7 +30,7 @@ namespace Racer
         powerUp bluePow;
 
         SpriteFont font;
-        string playerScore = "Score: ";
+        string PlayerTime = "Time: ";
         TimeSpan startScreen;
 
         public Game1()
@@ -160,13 +160,13 @@ namespace Racer
             //Player.updateScore(gameTime.TotalGameTime);
             TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
             if (!lost && start)
-                playerScore = "Score: " + timePlaying.ToString();
+                PlayerTime = "Time: " + timePlaying.ToString();
             base.Update(gameTime);
         }
 
         private void DrawText()
         {
-            spriteBatch.DrawString(font, playerScore, new Vector2(10, 10), Color.White);
+            spriteBatch.DrawString(font, PlayerTime, new Vector2(10, 10), Color.White);
         }
 
         /// <summary>
@@ -187,7 +187,6 @@ namespace Racer
             bluePow.Draw(spriteBatch);
             Menu.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
-
             DrawText();
 
             spriteBatch.End();
