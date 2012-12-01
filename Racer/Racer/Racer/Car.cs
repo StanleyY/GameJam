@@ -13,6 +13,7 @@ namespace Racer
     {
         Vector2 position;
         Vector2 motion;
+        float multiplier;
 
         Texture2D texture;
         Rectangle screenBounds;
@@ -26,6 +27,7 @@ namespace Racer
             this.texture = texture;
             this.screenBounds = screenBounds;
             this.shields = 3;
+            this.multiplier = 1;
 
             StartPosition();
         }
@@ -47,8 +49,11 @@ namespace Racer
             if (keyboardState.IsKeyDown(Keys.Right))
                 motion.X = 8f;
 
+            motion *= this.multiplier;
+
             position += motion;
-            LockCar();            
+          
+            LockCar(); 
         
         }
 
@@ -93,6 +98,16 @@ namespace Racer
         public void addShields()
         {
             this.shields++;
+        }
+
+        public float getMultiplier()
+        {
+            return this.multiplier;
+        }
+
+        public void buffMultiplier(float m)
+        {
+            this.multiplier *= m;
         }
 
         public void Draw(SpriteBatch spriteBatch)

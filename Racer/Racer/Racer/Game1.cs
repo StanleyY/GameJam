@@ -29,6 +29,10 @@ namespace Racer
         powerUp greenPow;
         powerUp bluePow;
 
+        SpriteFont font;
+        string playerScore = "Score: ";
+        TimeSpan startScreen;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -65,6 +69,8 @@ namespace Racer
             // TODO: use this.Content to load your game content here
             Texture2D menuTexture = Content.Load<Texture2D>("startMenu");
             Texture2D ggTexture = Content.Load<Texture2D>("ggscreen");
+
+            font = Content.Load<SpriteFont>("myFont");
 
             Menu = new startMenu(menuTexture);
             gameOver = new GG(ggTexture, lost);
@@ -107,17 +113,18 @@ namespace Racer
                 greenPow = new powerUp(greenTexture, screenRectangle);
                 Texture2D blueTexture = Content.Load<Texture2D>("blue");
                 bluePow = new powerUp(blueTexture, screenRectangle);
+                startScreen = gameTime.TotalGameTime;
             }
             if (start)
             {
                 Player.Update();
-                //brick.Update();
-                redPow.Update();
-                greenPow.Update();
-                bluePow.Update();
+                brick.Update();
+                //redPow.Update();
+                //greenPow.Update();
+                //bluePow.Update();
                 //draw gg
+
             }
-       //     Collision(brick, Player);
             if (brick.checkCollision(Player.getRectangle()))
             {
                 Console.WriteLine("touche");
@@ -136,10 +143,10 @@ namespace Racer
                 redPow.hitPlayer = true;
                 Console.WriteLine(Player.getShields());
             }
-            if (greenPow.checkCollision(Player.getRectangle()))
+            if (greenPow.checkCollision(Player.getRectangle()))//is permanent for now
             {
                 Console.WriteLine("greenPOW");
-                greenPow.addShields(Player);
+                greenPow.buffMultiplier(Player);
                 greenPow.hitPlayer = true;
                 Console.WriteLine("You got a green power up");
             }
@@ -150,7 +157,16 @@ namespace Racer
                 bluePow.hitPlayer = true;
                 Console.WriteLine("You got a blue power up");
             }
+            //Player.updateScore(gameTime.TotalGameTime);
+            TimeSpan timePlaying = gameTime.TotalGameTime.Subtract(startScreen);
+            if (!lost && start)
+                playerScore = "Score: " + timePlaying.ToString();
             base.Update(gameTime);
+        }
+
+        private void DrawText()
+        {
+            spriteBatch.DrawString(font, playerScore, new Vector2(10, 10), Color.White);
         }
 
         /// <summary>
@@ -171,6 +187,9 @@ namespace Racer
             bluePow.Draw(spriteBatch);
             Menu.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
+
+            DrawText();
+
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -27,5 +27,10 @@ namespace Racer
         {
             Player.addShields();
         }
+
+        public void buffMultiplier(Car Player)
+        {
+            Player.buffMultiplier(1.3f);//how much to increase speed by
+        }
     }
 }

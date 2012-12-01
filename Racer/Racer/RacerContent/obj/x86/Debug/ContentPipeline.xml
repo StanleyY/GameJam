@@ -64,6 +64,15 @@
       <Output>C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\green.xnb</Output>
       <Time>2012-12-01T04:32:21.7403806-05:00</Time>
     </Item>
+    <Item>
+      <Source>myFont.spritefont</Source>
+      <Name>myFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Antony\Documents\GitHub\GameJam\Racer\Racer\Racer\bin\x86\Debug\Content\myFont.xnb</Output>
+      <Time>2012-12-01T05:05:25.7968622-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
