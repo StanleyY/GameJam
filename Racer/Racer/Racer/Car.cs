@@ -19,10 +19,13 @@ namespace Racer
 
         KeyboardState keyboardState;
 
+        int shields;
+
         public Car(Texture2D texture, Rectangle screenBounds)
         {
             this.texture = texture;
             this.screenBounds = screenBounds;
+            this.shields = 3;
 
             StartPosition();
         }
@@ -75,6 +78,21 @@ namespace Racer
                 texture.Width,
                 texture.Height);
             return ballLocation;
+        }
+
+        public void takeDamage()
+        {
+            this.shields--;
+        }
+
+        public int getShields()
+        {
+            return this.shields;
+        }
+
+        public void addShields()
+        {
+            this.shields++;
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -14,11 +14,13 @@ namespace Racer
         float speed = 1f;
         Texture2D texture;
         Rectangle screenBounds;
+        public Boolean hitPlayer;
 
         public Wall(Texture2D texture, Rectangle screenBounds)
         {
             this.texture = texture;
             this.screenBounds = screenBounds;
+            this.hitPlayer = false;
             StartPosition();
         }
 
@@ -57,13 +59,16 @@ namespace Racer
         public bool checkCollision(Rectangle Car)
         {
             Rectangle missleLocation = new Rectangle(
-                (int)position.X,
-                (int)position.Y,
-                texture.Width,
-                texture.Height);
+            (int)position.X,
+            (int)position.Y,
+            texture.Width,
+            texture.Height);
 
-            if (missleLocation.Intersects(Car))
+            if (missleLocation.Intersects(Car) && (this.hitPlayer == false))
                 return true;
+
+            if (this.position.Y == 50)
+                this.hitPlayer = false;
 
             return false;
         }

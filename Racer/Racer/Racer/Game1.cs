@@ -25,6 +25,7 @@ namespace Racer
         Boolean start;
         GG gameOver;
         Boolean lost;
+        powerUp redPow;
 
         public Game1()
         {
@@ -98,57 +99,38 @@ namespace Racer
                 Player = new Car(tempTexture, screenRectangle);
                 Texture2D tempWallTexture = Content.Load<Texture2D>("ball");
                 brick = new Wall(tempWallTexture, screenRectangle);
+                Texture2D redTexture = Content.Load<Texture2D>("red");                
+                redPow = new powerUp(redTexture, screenRectangle);
             }
             if (start)
             {
                 Player.Update();
-                brick.Update();
+                //brick.Update();
+                redPow.Update();
                 //draw gg
             }
        //     Collision(brick, Player);
-            if(brick.checkCollision(Player.getRectangle()))
+            if (brick.checkCollision(Player.getRectangle()))
             {
                 Console.WriteLine("touche");
-                gameOver.setLost(true);
-                lost = gameOver.getLost();
+                Player.takeDamage();
+                brick.hitPlayer = true;
+                if (Player.getShields() <= 0)
+                {
+                    gameOver.setLost(true);
+                    lost = gameOver.getLost();
+                }
+            }
+            if (redPow.checkCollision(Player.getRectangle()))
+            {
+                Console.WriteLine("POWPOW");
+                redPow.addShields(Player);
+                redPow.hitPlayer = true;
+                Console.WriteLine(Player.getShields());
             }
             base.Update(gameTime);
         }
-        /*
-        private void Collision(Wall brick, Car Player)
-        {
-            Vector2 brickVec = brick.getPosition();
-            Vector2 playerVec = Player.getPosition();
-            Texture2D brickTexture = brick.getTexture();
-            //Texture2D playerTexture = Player.getTexture();
-            //brickvec.x <= playervec.x <= brickvec.x+bricktexture.width
-            //bickvec.y+bricktexture.height <= playervec.y <= brickvec.y
-            
-            if ((brickVec.X <= playerVec.X) && (playerVec.X <= brickVec.X + brickTexture.Width) && (brickVec.Y + brickTexture.Height >= playerVec.Y))
-            {
-                //puts the color of each pixel of the brick texture into an array
-                Color[] pixelColors = new Color[brickTexture.Width * brickTexture.Height];
-                brickTexture.GetData<Color>(pixelColors);
-                for (int i = 0; i < pixelColors.Length; i++)
-                {
-                    if ((pixelColors[i].R == 0) && (pixelColors[i].G == 0) && (pixelColors[i].B == 0))
-                    {
-                        Console.WriteLine("touche");
-                    }
-                }
 
-
-            //Console.WriteLine("touche");
-            }
-            
-            if ((brickVec.X <= playerVec.X) && (playerVec.X <= brickVec.X + brickTexture.Width) && (brickVec.Y + brickTexture.Height >= playerVec.Y))
-            {
-                Console.WriteLine("touche");
-                gameOver.setLost(true);
-                lost = gameOver.getLost();
-            }
-        }
-*/
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -162,6 +144,7 @@ namespace Racer
             
             Player.Draw(spriteBatch);
             brick.Draw(spriteBatch);
+            redPow.Draw(spriteBatch);
             Menu.Draw(spriteBatch);
             gameOver.Draw(spriteBatch);
             spriteBatch.End();
