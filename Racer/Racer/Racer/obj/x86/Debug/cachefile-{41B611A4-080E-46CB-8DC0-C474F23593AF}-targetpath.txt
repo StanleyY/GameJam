@@ -1,4 +1,0 @@
-Content\ball.xnb
-Content\paddle.xnb
-Content\startMenu.xnb
-Content\ggscreen.xnb
