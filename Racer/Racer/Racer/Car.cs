@@ -52,8 +52,13 @@ namespace Racer
             motion *= this.multiplier;
 
             position += motion;
+<<<<<<< HEAD
           
             LockCar(); 
+=======
+
+            LockCar();      
+>>>>>>> upstream/master
         
         }
 
@@ -63,6 +68,31 @@ namespace Racer
                 position.X = 0;
             if (position.X + texture.Width > screenBounds.Width)
                 position.X = screenBounds.Width - texture.Width;
+        }
+
+        public void takeDamage()
+        {
+            this.shields--;
+        }
+
+        public int getShields()
+        {
+            return this.shields;
+        }
+
+        public void addShields()
+        {
+            this.shields++;
+        }
+
+        public float getMultiplier()
+        {
+            return this.multiplier;
+        }
+
+        public void buffMultiplier(float m)
+        {
+            this.multiplier *= m;
         }
 
         public Vector2 getPosition()

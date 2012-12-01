@@ -9,8 +9,8 @@ namespace Racer
 {
     class GG
     {
-        Vector2 position;
         Texture2D texture;
+        Vector2 position;
 
         Boolean lost;
 
@@ -39,9 +39,13 @@ namespace Racer
             }
             else
             {
+<<<<<<< HEAD
                 spriteBatch.Draw(texture, Vector2.Zero, Color.White);
                 //draw score under
 
+=======
+                spriteBatch.Draw(texture, position, Color.White);
+>>>>>>> upstream/master
             }
         }
 
