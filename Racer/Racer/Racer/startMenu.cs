@@ -36,11 +36,7 @@ namespace Racer
             if (!start)
             {
                 spriteBatch.Draw(texture, position, Color.White);
-            }/*
-            else
-            {
-                spriteBatch.Draw(texture, position, Color.Black);
-            }*/
+            }
         }
     }
 }

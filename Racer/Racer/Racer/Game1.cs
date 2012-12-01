@@ -19,7 +19,6 @@ namespace Racer
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Car Player;
-        Wall wall;
         startMenu Menu;
         Rectangle screenRectangle;
         Boolean start;
